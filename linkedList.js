@@ -99,3 +99,7 @@ class LinkedList {
 const list = new LinkedList(node_1);
 
 console.log(list.read(2), list.indexOf("a"));
+
+// They are extremly helpful when dealing with a long list of data
+// With a normal array we would have to shift each element to make up for the extra space
+// But with linked list we are able to just switch the nodes next node
