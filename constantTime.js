@@ -1,3 +1,4 @@
+// LIFO
 class Stack {
   constructor() {
     this.stack = [];
@@ -40,6 +41,7 @@ stack.pop();
 stack.pop();
 // console.log(stack.getMax());
 
+// FIFO
 class Queue {
   constructor() {
     this.queue = [];
