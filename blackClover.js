@@ -47,6 +47,23 @@ class linkedList {
 
     return this.head;
   }
+
+  add(next) {
+    let current = this.head;
+    while (current) {
+      if (current.nextSpell === null) {
+        current.nextSpell = next;
+        break;
+      } else {
+        current = current.nextSpell;
+      }
+    }
+  }
+
+  group() {
+    let current = this.filter();
+    const preTraining = new linkedList();
+  }
 }
 
 const yunosGrimoire = new linkedList(spell1);
