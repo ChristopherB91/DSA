@@ -88,20 +88,20 @@ class LinkedList {
     while (currentSurge.nextSurge) {
       while (next) {
         // Find two surges with matching emotion type
-        if (nextSurge.emotionType == currentSurge.emotionType) {
+        if (next.emotionType == currentSurge.emotionType) {
           // if nextSurge is not suppressed we set the currentSurge to it
-          if (!nextSurge.isSuppressed) {
-            currentSurge.isSuppressed = nextSurge.isSuppressed;
+          if (!next.isSuppressed) {
+            currentSurge.isSuppressed = next.isSuppressed;
           }
           // adding intesity to calculate the average later
-          currentSurge.intensity += nextSurge.intensity;
+          currentSurge.intensity += next.intensity;
           // increasing the total so we can find the average
           total++;
           // deleting the node by changing the prev next surge pointer
-          prev.nextSurge = nextSurge.nextSurge;
+          prev.nextSurge = next.nextSurge;
         }
         prev = prev.nextSurge;
-        nextSurge = prev.nextSurge;
+        next = prev.nextSurge;
       }
       // Finding currentSurge average
       currentSurge.intensity = Math.floor((currentSurge.intensity /= total));
@@ -110,7 +110,7 @@ class LinkedList {
       // Then we go to the next surge and restart the process
       currentSurge = currentSurge.nextSurge;
       prev = currentSurge;
-      nextSurge = currentSurge.nextSurge;
+      next = currentSurge.nextSurge;
     }
 
     // Finally return the new LinkedList
@@ -120,4 +120,4 @@ class LinkedList {
 
 const timeLine = new LinkedList(surge1);
 
-console.log(timeLine.merge().nextSurge);
+console.log(timeLine.merge());
