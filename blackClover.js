@@ -99,11 +99,18 @@ class linkedList {
         }
       }
     }
-    return [preTraining.head, postTraining.head];
+    return [preTraining, postTraining];
+  }
+
+  groupJoin() {
+    let [pre, post] = this.group();
+
+    pre.add(post.head);
+    return pre.head;
   }
 }
 
 const yunosGrimoire = new linkedList(spell1);
 
 const newSpell = new spellNode("Spirit of zephyr", 70, false);
-console.log(yunosGrimoire.group());
+console.log(yunosGrimoire.groupJoin());
