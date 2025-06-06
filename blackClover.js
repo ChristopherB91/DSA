@@ -13,7 +13,7 @@ const spell3 = new spellNode("Sky Piercer", 80, false);
 const spell4 = new spellNode("Wind Shot Omega", 30, false);
 const spell5 = new spellNode("Tempest Claw", 70, false);
 const spell6 = new spellNode("Whirl Cyclone", 90, false);
-const spell7 = new spellNode("Hawk Wind Dive", 50, false);
+const spell7 = new spellNode("Hawk Wind Dive", 50, true);
 
 spell1.nextSpell = spell2;
 spell2.nextSpell = spell3;
@@ -23,7 +23,7 @@ spell5.nextSpell = spell6;
 spell6.nextSpell = spell7;
 
 class linkedList {
-  constructor(node) {
+  constructor(node = null) {
     this.head = node;
   }
 
@@ -51,8 +51,12 @@ class linkedList {
   add(next) {
     let current = this.head;
     while (current) {
-      if (current.nextSpell === null) {
-        current.nextSpell = next;
+      if (!current.nextSpell) {
+        current.nextSpell = new spellNode(
+          next.spellName,
+          next.manaCost,
+          next.isObsolete
+        );
         break;
       } else {
         current = current.nextSpell;
@@ -63,9 +67,43 @@ class linkedList {
   group() {
     let current = this.filter();
     const preTraining = new linkedList();
+    const postTraining = new linkedList();
+    while (current) {
+      //   console.log(current);
+      if (
+        current.spellName.includes("Whirl") ||
+        current.spellName.includes("Wind Shot")
+      ) {
+        if (preTraining.head) {
+          preTraining.add(current);
+          current = current.nextSpell;
+        } else {
+          preTraining.head = new spellNode(
+            current.spellName,
+            current.manaCost,
+            current.isObsolete
+          );
+          current = current.nextSpell;
+        }
+      } else {
+        if (postTraining.head) {
+          postTraining.add(current);
+          current = current.nextSpell;
+        } else {
+          postTraining.head = new spellNode(
+            current.spellName,
+            current.manaCost,
+            current.isObsolete
+          );
+          current = current.nextSpell;
+        }
+      }
+    }
+    return [preTraining.head, postTraining.head];
   }
 }
 
 const yunosGrimoire = new linkedList(spell1);
 
-console.log(yunosGrimoire.filter());
+const newSpell = new spellNode("Spirit of zephyr", 70, false);
+console.log(yunosGrimoire.group());
