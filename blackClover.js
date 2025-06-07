@@ -23,7 +23,7 @@ spell5.nextSpell = spell6;
 spell6.nextSpell = spell7;
 
 class linkedList {
-  constructor(node = null) {
+  constructor(node) {
     this.head = node;
   }
 
