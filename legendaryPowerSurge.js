@@ -7,7 +7,7 @@
 // Write a recursive function to calculate Broly’s power level at minute n.
 
 const power = (n) => {
-  if (n === 1) {
+  if (n === 1 /* BASE CASE */) {
     return 1;
   } else {
     return power(n - 1) + n ** 2;
