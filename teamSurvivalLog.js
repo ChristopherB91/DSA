@@ -69,5 +69,64 @@ class LinkedList {
 
 const list = new LinkedList(node1);
 
-console.log(list.head);
-console.log(list.listActive());
+// console.log(list.head);
+// console.log(list.listActive());
+
+let id2 = 0;
+
+class Node2 {
+  constructor() {
+    this.id = id2++;
+    this.isActive = true;
+    this.previousNode = null;
+    this.nextNode = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor(head, tail) {
+    this.head = head;
+    this.tail = tail;
+  }
+
+  insertAtEnd() {
+    let newNode = new Node2();
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.previousNode = this.tail;
+      this.tail.nextNode = newNode;
+      this.tail = newNode;
+    }
+  }
+
+  removeFromBeginning() {
+    if (!this.head) return nuil;
+
+    let removed = this.head;
+    this.head = this.head.nextNode;
+    this.head.previousNode = null;
+
+    return "Removed " + removed.id;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.queue = new DoublyLinkedList();
+  }
+
+  enqueue() {
+    this.queue.insertAtEnd();
+  }
+
+  dequeue() {
+    return this.queue.removeFromBeginning();
+  }
+
+  read() {
+    return this.queue.head;
+  }
+}
