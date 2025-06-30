@@ -82,13 +82,14 @@ class LinkedList {
   }
 
   merge() {
+    // Use the lowIntensity method to get a list without low intensity surges
     let currentSurge = this.lowIntensity();
     let prev = currentSurge;
     let next = currentSurge.nextSurge;
     // Total variable to help finding the average later on
     let total = 1;
 
-    while (currentSurge.nextSurge) {
+    while (next) {
       while (next) {
         // Find two surges with matching emotion type
         if (next.emotionType == currentSurge.emotionType) {
