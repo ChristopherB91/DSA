@@ -30,6 +30,7 @@ class Node {
   }
 }
 
+// Create new surges using the node class we created and information from the example and we point to the following surge
 const surge1 = new Node("rage", 80, false);
 const surge2 = new Node("rage", 60, true);
 const surge3 = new Node("joy", 25, true);
@@ -47,11 +48,13 @@ surge5.nextSurge = surge6;
 surge6.nextSurge = surge7;
 surge7.nextSurge = surge8;
 
+// Create our linkedList class that will take in the first surge as the head of list
 class LinkedList {
   constructor(surge) {
     this.head = surge;
   }
 
+  //  Create a method that gets rid of the low intensity surges(surges that have an intensity < 20) that were surpressed completing one of the tasks
   lowIntensity() {
     let currentSurge = this.head;
     let nextSurge = currentSurge.nextSurge;
